@@ -24,6 +24,10 @@ $(call inherit-product, device/oneplus/oneplus2/device.mk)
 # Inherit some common AOSP stuff.
 $(call inherit-product, vendor/carbon/config/common.mk)
 
+# Inherit GSM Stuff
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
 
