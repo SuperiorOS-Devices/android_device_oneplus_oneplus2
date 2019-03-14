@@ -22,16 +22,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l_mr1.mk
 $(call inherit-product, device/oneplus/oneplus2/device.mk)
 
 # Inherit some common AOSP stuff.
-$(call inherit-product, vendor/carbon/config/common.mk)
-
-# Inherit GSM Stuff
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, vendor/superior/config/common.mk)
 
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
 
-PRODUCT_NAME := carbon_oneplus2
+PRODUCT_NAME := superior_oneplus2
 PRODUCT_DEVICE := oneplus2
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
