@@ -55,6 +55,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-3 loop.max_part=7
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -101,7 +102,6 @@ TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
 
 # Camera
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
-BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/vendor/bin/mm-qcamera-daemon=22
@@ -161,7 +161,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 59047394304
 BOARD_FLASH_BLOCK_SIZE := 262144
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USES_MKE2FS := true
 
 # Power
 TARGET_HAS_NO_WLAN_STATS := true

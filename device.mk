@@ -88,8 +88,7 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing \
-    tinymix
+    libqcomvoiceprocessing
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/aanc_tuning_mixer.txt \
@@ -111,7 +110,6 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl
 
 PRODUCT_PACKAGES += \
@@ -119,6 +117,9 @@ PRODUCT_PACKAGES += \
     libshim_atomic \
     sensors.hal.tof \
     Snap
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -147,12 +148,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     OneplusDoze
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    e2fsck \
-    make_ext4fs \
-    setup_fs
-
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.0-service
@@ -176,10 +171,6 @@ PRODUCT_PACKAGES += \
     gps.conf \
     izat.conf \
     sap.conf
-
-# HIDL
-PRODUCT_PACKAGES += \
-    android.hidl.manager@1.0-java
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -286,12 +277,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -304,7 +293,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml \
-    wificond \
     hostapd \
     libwpa_client \
     wpa_supplicant \

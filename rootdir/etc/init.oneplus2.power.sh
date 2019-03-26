@@ -64,7 +64,7 @@ restorecon -R /sys/devices/system/cpu # must restore after interactive
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 99
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
@@ -79,7 +79,7 @@ restorecon -R /sys/devices/system/cpu # must restore after interactive
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 99
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1248000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
@@ -124,6 +124,9 @@ get-set-forall /sys/devices/system/cpu/*/sched_mostly_idle_nr_run 3
 write /proc/sys/kernel/sched_freq_inc_notify 400000
 write /proc/sys/kernel/sched_freq_dec_notify 400000
 
+# android background processes are set to nice 10. Never schedule these on the a57s.
+write /proc/sys/kernel/sched_upmigrate_min_nice 9
+
 # Enable rps static configuration
 write /sys/class/net/rmnet_ipa0/queues/rx-0/rps_cpus 8
 
@@ -137,8 +140,14 @@ get-set-forall  /sys/class/devfreq/qcom,mincpubw.*/governor cpufreq
 # Disable sched_boost
 write /proc/sys/kernel/sched_boost 0
 
-# change GPU initial power level from 305MHz(level 4) to 180MHz(level 5) for power savings
-write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
+# change GPU initial power level to 110MHz(level 7) for power savings
+write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 7
+
+# set GPU max power level
+write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
+
+# set GPU minimum frequency
+write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 27000000
 
 # set GPU default governor to msm-adreno-tz
 write /sys/class/devfreq/fdb00000.qcom,kgsl-3d0/governor msm-adreno-tz
