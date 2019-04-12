@@ -42,3 +42,7 @@ on property:dev.bootcomplete=1
     write /sys/kernel/msm_thermal/zone8 "768000 768000 75 70"
     write /sys/kernel/msm_thermal/sampling_ms 8000
     write /sys/kernel/msm_thermal/enabled 1
+
+    # Thermal Temperature 
+    write /sys/module/msm_thermal/parameters/core_limit_temp_degC 90
+    write /sys/module/msm_thermal/parameters/temp_threshold 85
