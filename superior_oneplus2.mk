@@ -24,6 +24,9 @@ $(call inherit-product, device/oneplus/oneplus2/device.mk)
 # Inherit some common AOSP stuff.
 $(call inherit-product, vendor/superior/config/common.mk)
 
+#OFFICIAL
+export SUPERIOR_OFFICIAL=true
+
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
 
